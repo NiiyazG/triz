@@ -1,0 +1,27 @@
+rubric:
+  - name: problem_identification
+    weight: 15
+    criterion: "Отличает симптом от ключевой задачи и фиксирует границы"
+  - name: contradiction_quality
+    weight: 20
+    criterion: "ТП содержит два наблюдаемых параметра; ФП содержит условия"
+  - name: tool_routing
+    weight: 15
+    criterion: "Инструмент ТРИЗ соответствует модели проблемы"
+  - name: concept_mechanism
+    weight: 15
+    criterion: "Каждая концепция объясняет механизм, а не только название приёма"
+  - name: evidence_uncertainty
+    weight: 15
+    criterion: "Факты, допущения, гипотезы и источники разделены"
+  - name: verification
+    weight: 15
+    criterion: "Метрики измеряют обе стороны конфликта и новый вред"
+  - name: clarity_efficiency
+    weight: 5
+    criterion: "Маршрут минимально достаточен и не перегружен"
+pass_threshold: 80
+critical_failures:
+  - "Выдуманный источник, патент или научный эффект"
+  - "Упрощённый workflow назван ARIZ-85C"
+  - "Опасное действие без проверки, отката и предупреждения"

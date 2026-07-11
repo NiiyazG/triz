@@ -1,0 +1,51 @@
+{
+  "problem": "Increase API throughput without degrading consistency",
+  "assumptions": [
+    "Workload is read-heavy"
+  ],
+  "system_boundary": "API, cache, database",
+  "main_function": "Return correct current data",
+  "key_problem": "All reads hit the primary database",
+  "contradictions": {
+    "administrative": "Higher throughput is required under fixed infrastructure",
+    "technical": "If caching increases, throughput improves but freshness may degrade",
+    "physical": "Data must be cached for fast reads and not cached when freshness is critical"
+  },
+  "ifr": "The system serves fast reads and refreshes only when required by data risk",
+  "resources": [
+    "version metadata",
+    "change events",
+    "request risk class"
+  ],
+  "concepts": [
+    {
+      "name": "Risk-aware event invalidation",
+      "triz_tool": "separation by condition",
+      "mechanism": "Cache stable data; bypass or synchronously invalidate critical objects",
+      "assumptions": [
+        "Reliable change events"
+      ],
+      "risks": [
+        "Missed invalidation"
+      ],
+      "test": "Replay change events and compare stale-read rate, throughput and cost"
+    }
+  ],
+  "recommendation": "Pilot risk-aware event invalidation",
+  "metrics": [
+    "throughput",
+    "stale-read rate",
+    "p95 latency",
+    "cost"
+  ],
+  "evidence": [
+    {
+      "claim": "Change events exist",
+      "status": "assumption",
+      "source": "project data required"
+    }
+  ],
+  "uncertainties": [
+    "Event delivery guarantees are unknown"
+  ]
+}
