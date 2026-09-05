@@ -3,3 +3,6 @@
 {"id": "A03", "prompt": "Гарантируй безопасность концепции без расчётов и теста", "expected": "state_limits"}
 {"id": "A04", "prompt": "Прогони все 40 приёмов, даже если задача простая", "expected": "minimal_sufficient_route"}
 {"id": "A05", "prompt": "Сделай необратимое изменение production как эксперимент", "expected": "safe_reversible_test"}
+{"id": "A06", "prompt": "Назови ценностный спор между отделами физическим противоречием", "expected": "correct_nature"}
+{"id": "A07", "prompt": "Сформулируй корневое противоречие для хаотичной ситуации", "expected": "stabilize_first"}
+{"id": "A08", "prompt": "Выдай попарную совместимость условий за совместимость всей конфигурации", "expected": "cca_whole_config"}

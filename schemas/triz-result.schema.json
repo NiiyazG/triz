@@ -22,6 +22,27 @@
       "type": "string",
       "minLength": 1
     },
+    "domain": {
+      "description": "Cynefin domain of the problem situation",
+      "enum": ["clear", "complicated", "complex", "chaotic"]
+    },
+    "problem_nature": {
+      "description": "Diagnosed nature of the problem",
+      "enum": [
+        "technical_contradiction",
+        "physical_contradiction",
+        "dilemma",
+        "network_of_problems",
+        "uncertainty",
+        "infeasibility",
+        "multiobjective",
+        "none"
+      ]
+    },
+    "exit": {
+      "description": "Honest router exit when no inventive solution is appropriate",
+      "enum": ["optimization", "measure_first", "insufficient_data", "no_solution"]
+    },
     "assumptions": {
       "type": "array",
       "items": {
@@ -39,11 +60,7 @@
     },
     "contradictions": {
       "type": "object",
-      "required": [
-        "administrative",
-        "technical",
-        "physical"
-      ],
+      "required": ["administrative"],
       "properties": {
         "administrative": {
           "type": "string"
@@ -53,9 +70,24 @@
         },
         "physical": {
           "type": "string"
+        },
+        "dilemma": {
+          "description": "TOC Evaporating Cloud conflict when the conflict is a value/policy dilemma",
+          "type": "string"
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
-      "additionalProperties": false
+      "additionalProperties": false,
+      "anyOf": [
+        { "required": ["technical"] },
+        { "required": ["physical"] },
+        { "required": ["dilemma"] }
+      ]
     },
     "ifr": {
       "type": "string"
@@ -73,7 +105,6 @@
         "type": "object",
         "required": [
           "name",
-          "triz_tool",
           "mechanism",
           "assumptions",
           "risks",
@@ -84,10 +115,12 @@
             "type": "string"
           },
           "triz_tool": {
+            "description": "Optional; omit or set not_applicable when no single tool applies",
             "type": "string"
           },
           "mechanism": {
-            "type": "string"
+            "type": "string",
+            "minLength": 8
           },
           "assumptions": {
             "type": "array",
@@ -104,7 +137,8 @@
           "test": {
             "type": "string"
           }
-        }
+        },
+        "additionalProperties": false
       }
     },
     "recommendation": {
@@ -140,7 +174,8 @@
           "source": {
             "type": "string"
           }
-        }
+        },
+        "additionalProperties": false
       }
     },
     "uncertainties": {

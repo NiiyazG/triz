@@ -1,5 +1,7 @@
 {
   "problem": "Increase API throughput without degrading consistency",
+  "domain": "complicated",
+  "problem_nature": "technical_contradiction",
   "assumptions": [
     "Workload is read-heavy"
   ],
